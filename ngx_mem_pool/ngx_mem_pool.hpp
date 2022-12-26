@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <memory.h>
+#include <functional>
 
 struct NgxPool;
 struct NgxPoolLarge;
@@ -24,7 +25,8 @@ using size_t = unsigned long;
 #define ngx_memzero(buf, n) (void)memset(buf, 0, n)
 
 //* 用于清理外部资源的函数指针
-typedef void (*NgxPoolCleanupPt)(void *data);
+// typedef void (*NgxPoolCleanupPt)(void *data);
+using NgxPoolCleanupPt = std::function<void(void *)>;
 
 //* 清理操作的回调函数等相关数据
 struct NgxPoolCleanup {
